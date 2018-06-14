@@ -30,3 +30,18 @@ transient/
 var/
 .cache/
 .lsp-session*
+
+# personal
+!/prelude-modules.el
+.org-id-locations
+abbrev_defs
+ac-comphist.dat
+anaconda-mode/
+elpy/
+emms/
+irony/
+magithub/
+org-clock-save.el
+personal/custom.el
+server/server
+swank/

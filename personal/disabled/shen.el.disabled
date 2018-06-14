@@ -1,0 +1,2 @@
+(require 'shen-mode)
+(add-to-list 'auto-mode-alist '("[.]shen$" . shen-mode))

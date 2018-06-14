@@ -1,0 +1,4 @@
+(eval-after-load 'smart-compile
+  '(progn
+     (add-to-list 'smart-compile-alist
+                  '("\\.c\\'" . "gcc-6 -std=c11 -Wpedantic -O2 %f -lm -o %n"))))

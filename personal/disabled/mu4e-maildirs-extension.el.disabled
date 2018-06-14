@@ -1,0 +1,17 @@
+(require 'mu4e-maildirs-extension)
+(mu4e-maildirs-extension)
+
+;; bash command to force sync offline imap
+;; kill -SIGUSR1 <offlineimap pid>
+
+(require 'deferred)
+(defun offlineimap-force-sync ()
+  "Force the offlineimap process to sync."
+  (interactive)
+  (mu4e-message "Forcing offlineimap to sync...")
+  (deferred:$
+    (deferred:process "bash" "-c"
+      "kill -SIGUSR1 `ps aux | grep '[o]fflineimap' | awk '{print $2}'`")
+    (deferred:nextc it
+      (lambda ()
+        (mu4e-message "Forced offlineimap to sync")))))

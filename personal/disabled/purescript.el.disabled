@@ -1,0 +1,42 @@
+;;; adapted from Ohai Emacs
+;;; :: https://github.com/bodil/ohai-emacs/blob/master/modules/ohai-purescript.el
+
+;;; purescript-mode :: https://github.com/dysinger/purescript-mode
+
+(add-hook 'purescript-mode-hook 'turn-on-purescript-indentation)
+(add-hook 'purescript-mode-hook 'flycheck-mode)
+
+(with-eval-after-load "flycheck"
+  (flycheck-define-checker pulp
+    "Use Pulp to flycheck PureScript code."
+    :command ("pulp" "--monochrome" "build")
+    :error-patterns
+    ((error line-start
+            (or (and "Error at " (file-name) " line " line ", column " column
+                     (one-or-more not-newline)
+                     (message (one-or-more (not (in "*")))))
+
+                (and "psc: " (one-or-more not-newline) "\n"
+                     (message (one-or-more not-newline) "\n")
+                     "at \"" (file-name) "\" (line " line ", column " column ")")
+                (and "Unable to parse module:\n"
+                     "  \"" (file-name) "\" (line " line ", column " column "):\n"
+                     (message (one-or-more not-newline) "\n"
+                              (one-or-more not-newline) "\n"
+                              (one-or-more not-newline) "\n"))
+                )
+
+            line-end
+            ))
+    :modes purescript-mode)
+  (add-to-list 'flycheck-checkers 'pulp))
+
+;;; psc-ide-emacs :: https://github.com/epost/psc-ide-emacs
+
+(setq psc-ide-executable "psc-ide")
+(setq psc-ide-server-executable "psc-ide-server")
+(add-hook 'purescript-mode-hook 'psc-ide-mode)
+
+;;; emacs-psci :: https://github.com/ardumont/emacs-psci
+
+(setq psci/file-path "pulp-psci")
