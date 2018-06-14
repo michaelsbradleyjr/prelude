@@ -1,0 +1,4 @@
+;; helpful in X11 Emacs running on Mac/XQuartz
+;; can eval in *scratch*
+
+(setq x-alt-keysym 'meta)

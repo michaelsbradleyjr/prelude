@@ -1,0 +1,11 @@
+;; Taken from this discussion:
+;; https://groups.google.com/forum/#!topic/clojure/_JWvqc3fENQ
+
+;; for key bindings see clojure-inferior-lisp.el in this directory
+
+;; instructions
+M-x set-variable
+enter: inferior-lisp-program
+enter: "/path/to/script/repljs" OR "lein trampoline cljsbuild repl-listen" OR similar...
+
+M-x inferior-lisp

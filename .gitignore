@@ -26,3 +26,18 @@ network-security.data
 prelude-cheatsheet.el
 prelude-cheatsheet.aux
 prelude-cheatsheet.log
+transient/
+
+# personal
+!/prelude-modules.el
+.org-id-locations
+abbrev_defs
+ac-comphist.dat
+anaconda-mode/
+emms/
+irony/
+magithub/
+org-clock-save.el
+personal/custom.el
+server/server
+swank/

@@ -1,0 +1,45 @@
+;; disable evil mode at startup, i.e. after the prelude-evil module has loaded
+;; (evil-mode 0)
+
+;; leave evil mode globally enabled, but (for now) make the default state for
+;; every major mode to be "emacs"
+(defun evil-initial-state (mode &optional default)
+  'emacs)
+
+(define-key evil-insert-state-map (kbd "jk") 'evil-normal-state)
+(define-key evil-insert-state-map (kbd "kj") 'evil-normal-state)
+
+;; disable guru mode when in evil modes other than 'emacs
+(defun personal-evil-emacs-state-guruchord-hook ()
+  (guru-mode 1)
+  (key-chord-mode 1))
+
+(defun personal-evil-other-state-guruchord-hook ()
+  (guru-mode 0)
+  (key-chord-mode 0))
+
+(defun personal-evil-guruchord-hook-setup ()
+  (mapc (lambda (st)
+          (let ((en (intern (concat "evil-" st "-state-entry-hook")))
+                (ex (intern (concat "evil-" st "-state-exit-hook"))))
+            (remove-hook en 'personal-evil-other-state-guruchord-hook)
+            (add-hook en 'personal-evil-other-state-guruchord-hook)
+            (remove-hook ex 'personal-evil-emacs-state-guruchord-hook)
+            (add-hook ex 'personal-evil-emacs-state-guruchord-hook)))
+        (list "normal"
+              "insert"
+              "visual"
+              "replace"
+              "operator"
+              "motion")))
+
+(personal-evil-guruchord-hook-setup)
+
+(defun personal-evil-all-to-emacs-state ()
+  (mapc
+   (lambda (b)
+     (with-current-buffer b
+       (evil-emacs-state nil)))
+   (buffer-list)))
+
+(personal-evil-all-to-emacs-state)
