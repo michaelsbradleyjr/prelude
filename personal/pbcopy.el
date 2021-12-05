@@ -107,9 +107,8 @@ See `x-set-selection'."
   (setq interprogram-cut-function nil)
   (setq interprogram-paste-function nil))
 
-
-(add-hook 'terminal-init-xterm-hook 'turn-on-pbcopy)
-
-(provide 'pbcopy)
-(require 'pbcopy)
-(turn-on-pbcopy)
+(if (eq system-type 'darwin)
+  (add-hook 'terminal-init-xterm-hook 'turn-on-pbcopy)
+  (provide 'pbcopy)
+  (require 'pbcopy)
+  (turn-on-pbcopy))
