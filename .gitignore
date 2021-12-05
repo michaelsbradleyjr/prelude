@@ -30,3 +30,6 @@ transient/
 var/
 .cache/
 .lsp-session*
+
+# michaelsbradleyjr
+/server/
