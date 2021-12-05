@@ -32,3 +32,6 @@ var/
 .lsp-session*
 gotools/
 eln-cache/
+
+# michaelsbradleyjr
+/server/
