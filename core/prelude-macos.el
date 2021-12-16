@@ -35,7 +35,12 @@
 (prelude-require-packages '(exec-path-from-shell))
 
 (require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
+;; (exec-path-from-shell-initialize)
+;; -- Michael Bradley, Jr. changed this code on 16 Dec 2021 --
+;; Explanation: I always run emacs/client from a shell (in a terminal)
+;; on macOS and I don't want to double source my .bashrc
+(when (string= "" (getenv "PATH"))
+  (exec-path-from-shell-initialize))
 
 ;; It's all in the Meta
 (setq ns-function-modifier 'hyper)
