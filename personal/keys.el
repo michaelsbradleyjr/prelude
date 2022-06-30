@@ -23,3 +23,6 @@
 
 (global-set-key [(control meta \])] 'shift-right)
 (global-set-key [(control meta \[)] 'shift-left)
+
+;; Activate counsel-rg
+(global-set-key [(control ?x) (control ?g)] 'counsel-rg)
