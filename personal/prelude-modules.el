@@ -1,0 +1,8 @@
+(require 'prelude-ivy)
+(require 'prelude-company)
+(require 'prelude-c)
+(require 'prelude-emacs-lisp)
+(require 'prelude-lisp)
+(require 'prelude-lsp)
+(require 'prelude-shell)
+(provide 'prelude-modules)
