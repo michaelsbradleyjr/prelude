@@ -34,4 +34,5 @@ gotools/
 eln-cache/
 
 # michaelsbradleyjr
+/racket-mode/
 /server/
