@@ -5,4 +5,11 @@
               (ignore-errors (delete-file custom-file)))))
 
 (declare-function prelude-require-packages "prelude-packages")
-(prelude-require-packages '(agent-shell clipetty gptel mcp svelte-mode))
+(prelude-require-packages
+ '(agent-shell
+   clipetty
+   gptel
+   mcp
+   svelte-mode
+   turnip
+   vterm))
